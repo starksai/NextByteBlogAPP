@@ -8,6 +8,7 @@ import { BiCategoryAlt } from "react-icons/bi";
 import { FaRegComments } from "react-icons/fa";
 import { FaRegUser } from "react-icons/fa";
 import { GoDot } from "react-icons/go";
+import { RouteCategory } from '@/Helpers/Routename';
 
 export const Appsidebar = () => {
     return (
@@ -29,7 +30,7 @@ export const Appsidebar = () => {
                         <SidebarMenuItem>
                             <SidebarMenuButton>
                                 <BiCategoryAlt />
-                                <Link to="" >categories</Link>
+                                <Link to={RouteCategory} >categories</Link>
                             </SidebarMenuButton>
                         </SidebarMenuItem>
                         <SidebarMenuItem>
@@ -56,9 +57,9 @@ export const Appsidebar = () => {
                 </SidebarGroup>
 
                 <SidebarGroup >
-                <SidebarGroupLabel>  Categories
+                    <SidebarGroupLabel>  Categories
 
-                </SidebarGroupLabel>
+                    </SidebarGroupLabel>
                     <SidebarMenu>
                         <SidebarMenuItem>
                             <SidebarMenuButton>
