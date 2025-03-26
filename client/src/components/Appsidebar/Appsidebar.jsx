@@ -30,7 +30,7 @@ export const Appsidebar = () => {
                         <SidebarMenuItem>
                             <SidebarMenuButton>
                                 <BiCategoryAlt />
-                                <Link to={RouteCategory} >categories</Link>
+                                <Link to={RouteCategory} >Categories</Link>
                             </SidebarMenuButton>
                         </SidebarMenuItem>
                         <SidebarMenuItem>

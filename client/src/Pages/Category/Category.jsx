@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Link } from 'react-router-dom'
@@ -17,18 +17,39 @@ import { getEnv } from '@/Helpers/getEnv'
 import { FaRegEdit } from "react-icons/fa";
 import { BsFillTrash3Fill } from "react-icons/bs";
 import { Loading } from '@/components/Loading/Loading'
+import { handleDelete } from '@/Helpers/handleDelete'
+import { showToastify } from '@/Helpers/showToastify'
 
 
 export const Category = () => {
 
+  const [refreshData, setRefreshData] = useState(false)
+  console.log(refreshData);
+  
+
   const { data: categoryData, loading, error } = useFetch(`${getEnv('VITE_API_BASE_URL')}/category/all-category`, {
     method: 'get',
     Credential: 'include'
-  })
+  },[refreshData])
 
   // console.log(categoryData);
 
-  if(loading) return <Loading />
+  const handleDeleteCategory = (id)=>{
+    const response = handleDelete(`${getEnv('VITE_API_BASE_URL')}/category/delete/${id}`)
+
+    if(response){
+      setRefreshData(!refreshData)
+      showToastify('success',"Data deleted")
+    }
+    else{
+      showToastify('error',"Data not deleted")
+
+    }
+    
+
+  }
+
+  if (loading) return <Loading />
   return (
     <Card >
       <CardHeader>
@@ -58,12 +79,14 @@ export const Category = () => {
                     <TableCell>{category.name}</TableCell>
                     <TableCell>{category.slug}</TableCell>
                     <TableCell className='flex gap-3'>
-                      <Button>
+                      <Button className='hover:bg-black hover:text-white' variant="outline">
                         <Link to={RouteEditCategory(category._id)}>
                           <FaRegEdit />
                         </Link>
                       </Button>
-                      <Button>
+                      <Button variant="outline" className='hover:bg-black hover:text-white' onClick={()=>{
+                        handleDeleteCategory(category._id)
+                      }}>
                         <Link>
                           <BsFillTrash3Fill />
                         </Link>
