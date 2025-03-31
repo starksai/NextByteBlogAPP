@@ -47,7 +47,9 @@ export const updateUser = async (req, res, next) => {
                 const uploadResult = await cloudinary.uploader.upload(req.file.path, {
                     folder: "nextbyteblog",
                     resource_type: "auto",
-                });
+                }).catch((err=>{
+                    next(handleError(500,err.message))
+                }));
 
                 user.avatar = uploadResult.secure_url;
             } catch (cloudinaryError) {

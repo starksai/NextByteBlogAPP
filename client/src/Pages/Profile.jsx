@@ -104,8 +104,6 @@ export const Profile = () => {
         const preview = URL.createObjectURL(file)
         setFile(file)
         setPreview(preview)
-
-
     }
 
     if (loading) return <Loading /> // Loading animation while fetching the data

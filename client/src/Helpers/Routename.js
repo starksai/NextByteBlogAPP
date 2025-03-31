@@ -4,6 +4,9 @@ export const RouteSignIn = '/signin'
 
 export const RouteSignUp = '/signup'
 export const RouteProfile = '/profile'
+
+// rotes names for blog
+
 export const RouteCategory = '/categories'
 export const RouteAddCategory = '/category/add'
 export const RouteEditCategory = (category_id)=>{
@@ -13,5 +16,17 @@ export const RouteEditCategory = (category_id)=>{
     else{
         return `/category/edit/:category_id`
     }
+}
 
+// rotes names for blog
+
+export const RouteBlog = '/blog'
+export const RouteAddBlog = '/blog/add'
+export const RouteEditBlog = (blogid)=>{
+    if(blogid){
+        return `/blog/edit/${blogid}`
+    }
+    else{
+        return `/blog/edit/:blog_id`
+    }
 }

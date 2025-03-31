@@ -1,0 +1,34 @@
+/* Editor Container */
+.editor-container {
+    max-width: 100%;
+    padding: 10px;
+}
+
+/* Responsive Jodit Styles */
+.jodit-container {
+    max-width: 100%;
+    min-height: 300px;
+    overflow: hidden;
+}
+
+/* Make toolbar scrollable on small screens */
+@media (max-width: 768px) {
+    .jodit-toolbar {
+        overflow-x: auto;
+        white-space: nowrap;
+        display: flex;
+    }
+    .jodit-toolbar-button {
+        font-size: 14px;
+        padding: 5px;
+    }
+    .jodit-container {
+        min-height: 200px;
+    }
+}
+
+/* Ensure images inside the editor are responsive */
+.jodit-wysiwyg img {
+    max-width: 100%;
+    height: auto;
+}

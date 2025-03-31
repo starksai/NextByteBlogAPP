@@ -24,7 +24,7 @@ import { showToastify } from '@/Helpers/showToastify'
 export const Category = () => {
 
   const [refreshData, setRefreshData] = useState(false)
-  console.log(refreshData);
+  // console.log(refreshData);
   
 
   const { data: categoryData, loading, error } = useFetch(`${getEnv('VITE_API_BASE_URL')}/category/all-category`, {
@@ -34,8 +34,10 @@ export const Category = () => {
 
   // console.log(categoryData);
 
-  const handleDeleteCategory = (id)=>{
-    const response = handleDelete(`${getEnv('VITE_API_BASE_URL')}/category/delete/${id}`)
+  const handleDeleteCategory = async (id)=>{
+    const response = await handleDelete(`${getEnv('VITE_API_BASE_URL')}/category/delete/${id}`)
+    // console.log(response);
+    
 
     if(response){
       setRefreshData(!refreshData)

@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom'
 import './App.css'
 import { Layout } from './Layout/Layout'
-import { RouteAddCategory, RouteCategory, RouteEditCategory, RouteIndex, RouteProfile, RouteSignIn, RouteSignUp } from './Helpers/Routename'
+import { RouteAddBlog, RouteAddCategory, RouteBlog, RouteCategory, RouteEditBlog, RouteEditCategory, RouteIndex, RouteProfile, RouteSignIn, RouteSignUp } from './Helpers/Routename'
 import { Index } from './Pages/Index'
 import { Signin } from './Pages/Signin'
 import { Signup } from './Pages/Signup'
@@ -9,6 +9,9 @@ import { Profile } from './Pages/Profile'
 import { Category } from './Pages/Category/Category'
 import { Addcategory } from './Pages/Category/Addcategory'
 import { Editcategory } from './Pages/Category/Editcategory'
+import { Blog } from './Pages/Bolg/Blog'
+import { Blogadd } from './Pages/Bolg/Blogadd'
+import { Blogedit } from './Pages/Bolg/Blogedit'
 
 function App() {
 
@@ -17,11 +20,26 @@ function App() {
       <Routes>
         <Route path={RouteIndex} element={<Layout />} >
           <Route index element={<Index />} />
+
+
           <Route path={RouteProfile} element={<Profile />} />
+
+          
           <Route path={RouteCategory} element={<Category />} />
           <Route path={RouteAddCategory} element={<Addcategory />} />
           <Route path={RouteEditCategory()} element={<Editcategory />} />
+
+
+          <Route path={RouteBlog} element={<Blog />} />
+          <Route path={RouteAddBlog} element={<Blogadd />} />
+          <Route path={RouteEditBlog()} element={<Blogedit />} />
+
+
+
         </Route>
+
+
+
         <Route path={RouteSignIn} element={<Signin />} />
         <Route path={RouteSignUp} element={<Signup />} />
       </Routes>

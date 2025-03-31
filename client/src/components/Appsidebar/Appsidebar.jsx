@@ -8,9 +8,16 @@ import { BiCategoryAlt } from "react-icons/bi";
 import { FaRegComments } from "react-icons/fa";
 import { FaRegUser } from "react-icons/fa";
 import { GoDot } from "react-icons/go";
-import { RouteCategory } from '@/Helpers/Routename';
+import { RouteBlog, RouteCategory } from '@/Helpers/Routename';
+import { useFetch } from '@/hooks/useFetch';
+import { getEnv } from '@/Helpers/getEnv';
 
 export const Appsidebar = () => {
+
+    const { data: categoryData } = useFetch(`${getEnv('VITE_API_BASE_URL')}/category/all-category`, {
+        method: 'get',
+        Credential: 'include'
+    })
     return (
         <Sidebar className='pt-16'>
             {/* <SidebarHeader >
@@ -36,7 +43,7 @@ export const Appsidebar = () => {
                         <SidebarMenuItem>
                             <SidebarMenuButton>
                                 <GrBlog />
-                                <Link to="" >Blog</Link>
+                                <Link to={RouteBlog} >Blog</Link>
                             </SidebarMenuButton>
                         </SidebarMenuItem>
                         <SidebarMenuItem>
@@ -61,12 +68,13 @@ export const Appsidebar = () => {
 
                     </SidebarGroupLabel>
                     <SidebarMenu>
-                        <SidebarMenuItem>
+                        {categoryData && categoryData.category.length > 0 && categoryData.category.map(cate => <SidebarMenuItem key={cate._id}>
                             <SidebarMenuButton>
                                 <GoDot />
-                                <Link to="" >Categories1</Link>
+                                <Link to="" >{cate.name}</Link>
                             </SidebarMenuButton>
-                        </SidebarMenuItem>
+                        </SidebarMenuItem>)}
+
                     </SidebarMenu>
 
 
