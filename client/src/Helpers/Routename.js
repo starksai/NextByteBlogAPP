@@ -30,3 +30,13 @@ export const RouteEditBlog = (blogid)=>{
         return `/blog/edit/:blog_id`
     }
 }
+
+export const RouteSingleBlog = (category,blog)=>{
+    if(!category, !blog){
+        return `/blog/:category/:blog`
+    }
+    else{
+        return `/blog/${category}/${blog}`
+    }
+
+}

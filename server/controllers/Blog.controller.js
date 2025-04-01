@@ -112,7 +112,7 @@ export const deleteBlog = async (req, res, next) => {
     try {
         const { blogid } = req.params
 
-        console.log(blogid);
+        // console.log(blogid);
 
 
         await Blog.findByIdAndDelete(blogid)
@@ -130,7 +130,23 @@ export const deleteBlog = async (req, res, next) => {
 
 export const showAllBlog = async (req, res, next) => {
     try {
-        let blog = await Blog.find().populate('author', 'name avatar role').populate('category', 'name').sort({ createdAt: -1 }).lean().exec()
+        let blog = await Blog.find().populate('author', 'name avatar role').populate('category', 'name slug').sort({ createdAt: -1 }).lean().exec()
+
+        res.status(200).json({
+            blog
+        })
+
+
+    } catch (error) {
+        next(handleError(500, error.message))
+
+    }
+}
+
+export const getBlog = async (req, res, next) => {
+    const {slug} = req.params
+    try {
+        let blog = await Blog.findOne({slug}).populate('author', 'name avatar role').populate('category', 'name slug').lean().exec()
 
         res.status(200).json({
             blog

@@ -11,7 +11,7 @@ export const Index = () => {
     Credential: 'include'
   })
 
-  console.log(blogData);
+  // console.log(blogData);
 
   if (loading) return <Loading />
   return (
