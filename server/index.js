@@ -8,6 +8,7 @@ import UserRouter from "./Route/User.route.js"
 import CategoryRoute from "./Route/category.rout.js"
 import BlogRouter from "./Route/Blog.Route.js"
 import CommentRouter from "./Route/Comment.route.js"
+import LikeRoute from "./Route/Like.route.js"
 
 dotenv.config() // loading environment variables from .env module
 
@@ -28,6 +29,7 @@ app.use('/api/user', UserRouter)
 app.use('/api/category', CategoryRoute)
 app.use('/api/blog', BlogRouter)
 app.use('/api/comment', CommentRouter)
+app.use('/api/blog-like', LikeRoute)
 
 mongoose.connect(process.env.MONGODB_CONNECT, { dbName: "NextByteBlog" })
     .then(() => console.log("database is connected"))

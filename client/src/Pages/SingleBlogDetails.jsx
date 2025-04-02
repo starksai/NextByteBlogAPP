@@ -1,6 +1,7 @@
 import { Comment } from '@/components/Comment/Comment'
 import { CommentCount } from '@/components/CommentsCount/CommentCount'
 import { CommentsList } from '@/components/CommentsList/CommentsList'
+import { LikesCount } from '@/components/LikesCount/LikesCount'
 import { Loading } from '@/components/Loading/Loading'
 import { Avatar, AvatarImage } from '@/components/ui/avatar'
 import { getEnv } from '@/Helpers/getEnv'
@@ -41,7 +42,8 @@ export const SingleBlogDetails = () => {
               </div>
 
               <div className='flex justify-between items-center gap-2'>
-                <CommentCount props={{blogid : data.blog._id}} />
+                <LikesCount props={{ blogid: data.blog._id }} />
+                <CommentCount props={{ blogid: data.blog._id }} />
               </div>
 
 
