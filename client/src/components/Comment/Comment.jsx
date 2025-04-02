@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FaComments } from "react-icons/fa6";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { z } from 'zod'
@@ -11,13 +11,16 @@ import { showToastify } from '@/Helpers/showToastify';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { RouteSignIn } from '@/Helpers/Routename';
+import { CommentsList } from '../CommentsList/CommentsList';
 
 export const Comment = ({ props }) => {
+
+    const [newComment, setNewComment] = useState()
 
     const user = useSelector((state) => state.user)
 
     const formSchema = z.object({
-        comment: z.string().min(3, "comment must be 3 characters long."),
+        comment: z.string(),
     })
 
     const form = useForm({
@@ -32,7 +35,7 @@ export const Comment = ({ props }) => {
         // console.log(values);
 
         try {
-            let newValues = {...values, blogid : props.blogid, author : user.user._id}
+            let newValues = { ...values, blogid: props.blogid, author: user.user._id }
             const response = await fetch(`${getEnv('VITE_API_BASE_URL')}/comment/add`, {
                 method: 'post',
                 headers: { "Content-Type": "application/json" },
@@ -45,6 +48,8 @@ export const Comment = ({ props }) => {
             if (!response.ok) {
                 return showToastify("error", data.message)
             }
+            setNewComment(data.comment)
+
             form.reset()
             showToastify("success", data.message)
 
@@ -89,6 +94,11 @@ export const Comment = ({ props }) => {
                 </Button>
 
             }
+
+            <div className='border-t mt-5 pt-5' >
+                <CommentsList props={{ blogid: props.blogid , newComment }} />
+
+            </div>
 
 
         </div>

@@ -18,7 +18,7 @@ export const BlogCard = ({ props }) => {
 
     return (
         <Link to={RouteSingleBlog(props.category.name, props.slug)}>
-            <Card className='pt-5 h-80'>
+            <Card className='pt-5 '>
                 <CardContent>
                     <div className='flex justify-between items-center'>
                         <div className='flex justify-between items-center gap-2'>
@@ -36,7 +36,7 @@ export const BlogCard = ({ props }) => {
                     <div >
                         <p className='flex items-center gap-2 mb-2'>
                             <FaRegCalendarAlt />
-                            <span>{moment(props.createdAt).format('DD-MM-YYYY')}</span>
+                            <span>{moment(props.createdAt).fromNow()}</span>
                         </p>
                         <h2 className='text-2xl font-bold line-clamp-2'>{props.title}</h2>
                     </div>
