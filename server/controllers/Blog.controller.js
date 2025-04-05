@@ -1,6 +1,7 @@
 import cloudinary from "../config/cloudinary.js";
 import { handleError } from "../Helper/handleErroe.js";
 import Blog from "../models/blog.model.js";
+import Category from "../models/category.model.js";
 
 export const addBlog = async (req, res, next) => {
     try {
@@ -150,6 +151,40 @@ export const getBlog = async (req, res, next) => {
 
         res.status(200).json({
             blog
+        })
+
+
+    } catch (error) {
+        next(handleError(500, error.message))
+
+    }
+}
+
+
+export const getRelatedBlog = async (req, res, next) => {
+
+    try {
+        const {category, blog} = req.params
+
+        // console.log(category);
+        // console.log(blog);
+        
+
+        const categoryData = await Category.findOne({slug : category})
+
+        // console.log(categoryData);
+
+
+        if(!categoryData){
+            return next(handleError(404, "category data not found."))
+        }
+        const categoryId = categoryData._id
+        
+
+        let relatedBlog = await Blog.find({ category :categoryId, slug : {$ne:blog}}).lean().exec()
+
+        res.status(200).json({
+            relatedBlog
         })
 
 

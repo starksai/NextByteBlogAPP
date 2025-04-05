@@ -93,7 +93,7 @@ export const Blogadd = () => {
 
 
     async function onSubmit(values) {
-        console.log(values);
+        // console.log(values);
 
         try {
             const newData = {...values, author: user.user._id}

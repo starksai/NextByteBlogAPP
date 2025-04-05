@@ -107,7 +107,7 @@ export const Login = async (req, res, next) => {
 export const GoogleLogin = async (req, res, next) => {
     try {
         const { name, email, avatar } = req.body;
-        console.log("Request Body:", req.body); // Debugging
+        // console.log("Request Body:", req.body); // Debugging
         let user;
         user = await User.findOne({ email })
 

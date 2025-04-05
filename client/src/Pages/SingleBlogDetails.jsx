@@ -3,6 +3,7 @@ import { CommentCount } from '@/components/CommentsCount/CommentCount'
 import { CommentsList } from '@/components/CommentsList/CommentsList'
 import { LikesCount } from '@/components/LikesCount/LikesCount'
 import { Loading } from '@/components/Loading/Loading'
+import { RelatedBlog } from '@/components/RelatedBlog/RelatedBlog'
 import { Avatar, AvatarImage } from '@/components/ui/avatar'
 import { getEnv } from '@/Helpers/getEnv'
 import { useFetch } from '@/hooks/useFetch'
@@ -18,7 +19,7 @@ export const SingleBlogDetails = () => {
   const { data, loading, error } = useFetch(`${getEnv('VITE_API_BASE_URL')}/blog/get-blog/${blog}`, {
     method: 'get',
     Credential: 'include'
-  })
+  },[blog,category])
 
   // console.log(data);
 
@@ -64,7 +65,9 @@ export const SingleBlogDetails = () => {
         </>
       }
 
-      <div className='border rounded w-[30%]'></div>
+      <div className='border rounded w-[30%]'>
+        <RelatedBlog props={{category:category, blog : blog}} />
+      </div>
     </div>
   )
 }

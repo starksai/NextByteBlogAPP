@@ -17,13 +17,13 @@ export const BlogCard = ({ props }) => {
 
 
     return (
-        <Link to={RouteSingleBlog(props.category.name, props.slug)}>
-            <Card className='pt-5 '>
+        <Link to={RouteSingleBlog(props.category.slug, props.slug)}>
+            <Card className='pt-5 w-full '>
                 <CardContent>
                     <div className='flex justify-between items-center'>
                         <div className='flex justify-between items-center gap-2'>
                             <Avatar>
-                                <AvatarImage src={props.author.avatar} />
+                                <AvatarImage src={props.author.avatar}  />
                             </Avatar>
                             <span>{props.author.name}</span>
                         </div>
@@ -31,7 +31,7 @@ export const BlogCard = ({ props }) => {
 
                     </div>
                     <div className='my-2'>
-                        <img src={props.featuredImage} className='rounded' />
+                        <img src={props.featuredImage} className='rounded w-full h-60 ' />
                     </div>
                     <div >
                         <p className='flex items-center gap-2 mb-2'>
