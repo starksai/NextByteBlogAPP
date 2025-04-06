@@ -59,6 +59,12 @@ export const Comment = ({ props }) => {
         }
 
     }
+
+    const handleCommentWheneLoggedOff = () => {
+        showToastify('error', "login for comment")
+    }
+
+
     return (
         <div >
             <div className='flex items-center gap-2 text-2xl font-blod '>
@@ -87,6 +93,9 @@ export const Comment = ({ props }) => {
                     </form>
                 </Form>
                 :
+                // <>
+                // <Textarea onClick={handleCommentWheneLoggedOff} />
+                // </>
                 <Button asChild >
                     <Link to={RouteSignIn} >
                         Sign In
@@ -96,7 +105,7 @@ export const Comment = ({ props }) => {
             }
 
             <div className='border-t mt-5 pt-5' >
-                <CommentsList props={{ blogid: props.blogid , newComment }} />
+                <CommentsList props={{ blogid: props.blogid, newComment }} />
 
             </div>
 
