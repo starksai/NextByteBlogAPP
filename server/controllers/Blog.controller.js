@@ -219,3 +219,28 @@ export const getBlogsByCategory = async (req, res, next) => {
         next(handleError('500',error.message))
     }
 }
+
+
+export const getSearch = async (req, res, next) => {
+    const { q } = req.params
+
+    // console.log(q);
+    
+
+    try {
+
+        if(!q){
+            return next(handleError("404","quer data not found."))
+        }
+        const searchBlogs = await Blog.find({ title : {$regex : q , $options: 'i'}  }).populate('author', 'avatar name role email').populate('category', 'name slug').lean().exec()
+
+        // console.log(searchBlogs);
+
+        res.status(200).json({
+            searchBlogs
+        })
+
+    } catch (error) {
+        next(handleError('500',error.message))
+    }
+}

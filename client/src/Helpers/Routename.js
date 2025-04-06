@@ -1,7 +1,6 @@
 export const RouteIndex = '/'
 
 export const RouteSignIn = '/signin'
-
 export const RouteSignUp = '/signup'
 export const RouteProfile = '/profile'
 
@@ -48,5 +47,13 @@ export const RouteBlogByCategory = (category)=>{
     else{
         return `/blog/${category}`
     }
+}
 
+export const RouteSearchBlog = (q)=>{
+    if(!q){
+        return `/search`
+    }
+    else{
+        return `/search?q=${q}`
+    }
 }

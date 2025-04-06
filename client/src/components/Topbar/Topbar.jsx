@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Button } from '../ui/button'
 import { GrLogin } from "react-icons/gr";
 import { Searchbar } from '../Searchbar/Searchbar';
-import { RouteIndex, RouteProfile, RouteSignIn } from '@/Helpers/Routename';
+import { RouteAddBlog,  RouteIndex, RouteProfile, RouteSignIn } from '@/Helpers/Routename';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     DropdownMenu,
@@ -23,27 +23,16 @@ import { removeUser } from '@/Redux/slices/user.slice';
 import { showToastify } from '@/Helpers/showToastify';
 import { getEnv } from '@/Helpers/getEnv';
 
-
-
-
-
-
 export const Topbar = () => {
-
-
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const user = useSelector((state) => state.user)
 
     // console.log(user, 'user');
-
-
     // console.log(user.user.avatar, "profile url");
+
     const handleLogout = async () => {
-
-
-
 
         try {
             const response = await fetch(`${getEnv('VITE_API_BASE_URL')}/auth/logout`, {
@@ -53,7 +42,6 @@ export const Topbar = () => {
 
             const data = await response.json()
             // console.log(data);
-
 
             if (!response.ok) {
                 return showToastify("error", data.message)
@@ -109,7 +97,7 @@ export const Topbar = () => {
                                 </Link>
                             </DropdownMenuItem>
                             <DropdownMenuItem asChild className="cursor-pointer">
-                                <Link to=''>
+                                <Link to={RouteAddBlog}>
                                     <MdAddCircle color='orange' />
                                     Add Blog
                                 </Link>
