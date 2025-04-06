@@ -8,7 +8,7 @@ import { BiCategoryAlt } from "react-icons/bi";
 import { FaRegComments } from "react-icons/fa";
 import { FaRegUser } from "react-icons/fa";
 import { GoDot } from "react-icons/go";
-import { RouteBlog, RouteBlogByCategory, RouteCategory } from '@/Helpers/Routename';
+import { RouteBlog, RouteBlogByCategory, RouteCategory, RouteCommentsPage } from '@/Helpers/Routename';
 import { useFetch } from '@/hooks/useFetch';
 import { getEnv } from '@/Helpers/getEnv';
 
@@ -51,7 +51,7 @@ export const Appsidebar = () => {
                         <SidebarMenuItem>
                             <SidebarMenuButton>
                                 <FaRegComments />
-                                <Link to="" >Comments</Link>
+                                <Link to={RouteCommentsPage} >Comments</Link>
                             </SidebarMenuButton>
                         </SidebarMenuItem>
                         <SidebarMenuItem>

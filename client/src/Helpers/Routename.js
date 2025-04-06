@@ -57,3 +57,5 @@ export const RouteSearchBlog = (q)=>{
         return `/search?q=${q}`
     }
 }
+
+export const RouteCommentsPage = `/comments`
