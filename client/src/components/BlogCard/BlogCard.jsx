@@ -18,7 +18,7 @@ export const BlogCard = ({ props }) => {
 
     return (
         <Link to={RouteSingleBlog(props.category.slug, props.slug)}>
-            <Card className='pt-5 w-full '>
+            <Card className='pt-5 w-full h-90 '>
                 <CardContent>
                     <div className='flex justify-between items-center'>
                         <div className='flex justify-between items-center gap-2'>
@@ -31,7 +31,7 @@ export const BlogCard = ({ props }) => {
 
                     </div>
                     <div className='my-2'>
-                        <img src={props.featuredImage} className='rounded w-full h-60 ' />
+                        <img src={props.featuredImage} className='rounded w-full h-50 ' />
                     </div>
                     <div >
                         <p className='flex items-center gap-2 mb-2'>

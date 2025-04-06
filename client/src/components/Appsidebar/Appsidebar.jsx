@@ -8,7 +8,7 @@ import { BiCategoryAlt } from "react-icons/bi";
 import { FaRegComments } from "react-icons/fa";
 import { FaRegUser } from "react-icons/fa";
 import { GoDot } from "react-icons/go";
-import { RouteBlog, RouteCategory } from '@/Helpers/Routename';
+import { RouteBlog, RouteBlogByCategory, RouteCategory } from '@/Helpers/Routename';
 import { useFetch } from '@/hooks/useFetch';
 import { getEnv } from '@/Helpers/getEnv';
 
@@ -18,6 +18,8 @@ export const Appsidebar = () => {
         method: 'get',
         Credential: 'include'
     })
+    // console.log(categoryData);
+    
     return (
         <Sidebar className='pt-16'>
             {/* <SidebarHeader >
@@ -71,7 +73,7 @@ export const Appsidebar = () => {
                         {categoryData && categoryData.category.length > 0 && categoryData.category.map(cate => <SidebarMenuItem key={cate._id}>
                             <SidebarMenuButton>
                                 <GoDot />
-                                <Link to="" >{cate.name}</Link>
+                                <Link to={RouteBlogByCategory(cate.slug)} >{cate.name}</Link>
                             </SidebarMenuButton>
                         </SidebarMenuItem>)}
 

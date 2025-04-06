@@ -54,7 +54,7 @@ export const editBlog = async (req, res, next) => {
         res.status(200).json({
             blog
         })
-        
+
 
     } catch (error) {
         next(handleError(500, error.message))
@@ -64,14 +64,14 @@ export const editBlog = async (req, res, next) => {
 
 export const updateBlog = async (req, res, next) => {
     try {
-        const {blogid} = req.params
+        const { blogid } = req.params
         const data = JSON.parse(req.body.data)
 
         // console.log(data);
-        
+
         const blog = await Blog.findById(blogid)
 
-        blog.category =data.category
+        blog.category = data.category
         blog.slug = data.slug
         blog.title = data.title
         blog.blogContent = data.blogcontent
@@ -95,7 +95,7 @@ export const updateBlog = async (req, res, next) => {
         blog.featuredImage = featuredImage
 
         await blog.save()
-      
+
 
 
         res.status(200).json({
@@ -145,9 +145,9 @@ export const showAllBlog = async (req, res, next) => {
 }
 
 export const getBlog = async (req, res, next) => {
-    const {slug} = req.params
+    const { slug } = req.params
     try {
-        let blog = await Blog.findOne({slug}).populate('author', 'name avatar role').populate('category', 'name slug').lean().exec()
+        let blog = await Blog.findOne({ slug }).populate('author', 'name avatar role').populate('category', 'name slug').lean().exec()
 
         res.status(200).json({
             blog
@@ -164,24 +164,21 @@ export const getBlog = async (req, res, next) => {
 export const getRelatedBlog = async (req, res, next) => {
 
     try {
-        const {category, blog} = req.params
+        const { category, blog } = req.params
 
         // console.log(category);
         // console.log(blog);
-        
 
-        const categoryData = await Category.findOne({slug : category})
+        const categoryData = await Category.findOne({ slug: category })
 
         // console.log(categoryData);
 
-
-        if(!categoryData){
+        if (!categoryData) {
             return next(handleError(404, "category data not found."))
         }
         const categoryId = categoryData._id
-        
 
-        let relatedBlog = await Blog.find({ category :categoryId, slug : {$ne:blog}}).lean().exec()
+        let relatedBlog = await Blog.find({ category: categoryId, slug: { $ne: blog } }).lean().exec()
 
         res.status(200).json({
             relatedBlog
@@ -191,5 +188,34 @@ export const getRelatedBlog = async (req, res, next) => {
     } catch (error) {
         next(handleError(500, error.message))
 
+    }
+}
+
+
+export const getBlogsByCategory = async (req, res, next) => {
+    const { category } = req.params
+
+    try {
+        const categoryData = await Category.findOne({ slug: category }).lean().exec()
+
+        // console.log(categoryData._id);
+
+        const categoryId = categoryData._id
+
+        if(!categoryId){
+            return next(handleError('404',"categoryId not found"))
+
+        }
+
+        const BlogsData = await Blog.find({ category: categoryId }).populate('author', 'avatar name role email').populate('category', 'name slug').lean().exec()
+
+        // console.log(BlogsData);
+
+        res.status(200).json({
+            BlogsData
+        })
+
+    } catch (error) {
+        next(handleError('500',error.message))
     }
 }
