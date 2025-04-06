@@ -33,7 +33,7 @@ const userSchema = new mongoose.Schema({
         trim : true,
         default:""
     }
-})
+},{timestamps : true})
 
 const User = mongoose.model('User',userSchema,"users")
 

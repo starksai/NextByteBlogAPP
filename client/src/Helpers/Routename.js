@@ -59,3 +59,4 @@ export const RouteSearchBlog = (q)=>{
 }
 
 export const RouteCommentsPage = `/comments`
+export const RouteUsersPage = `/users`

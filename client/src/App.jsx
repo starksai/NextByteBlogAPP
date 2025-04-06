@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom'
 import './App.css'
 import { Layout } from './Layout/Layout'
-import { RouteAddBlog, RouteAddCategory, RouteBlog, RouteBlogByCategory, RouteCategory, RouteCommentsPage, RouteEditBlog, RouteEditCategory, RouteIndex, RouteProfile, RouteSearchBlog, RouteSignIn, RouteSignUp, RouteSingleBlog } from './Helpers/Routename'
+import { RouteAddBlog, RouteAddCategory, RouteBlog, RouteBlogByCategory, RouteCategory, RouteCommentsPage, RouteEditBlog, RouteEditCategory, RouteIndex, RouteProfile, RouteSearchBlog, RouteSignIn, RouteSignUp, RouteSingleBlog, RouteUsersPage } from './Helpers/Routename'
 import { Index } from './Pages/Index'
 import { Signin } from './Pages/Signin'
 import { Signup } from './Pages/Signup'
@@ -16,6 +16,7 @@ import { SingleBlogDetails } from './Pages/SingleBlogDetails'
 import { BlogsByCategory } from './Pages/BlogsByCategory'
 import { SearchBlog } from './Pages/SearchBlog'
 import { CommentsPage } from './Pages/CommentsPage'
+import { UserPage } from './Pages/UserPage'
 
 function App() {
 
@@ -46,6 +47,7 @@ function App() {
           <Route path={RouteSearchBlog()} element={<SearchBlog />}  />
           
           <Route path={RouteCommentsPage} element={<CommentsPage />} />
+          <Route path={RouteUsersPage} element={<UserPage />} />
         </Route>
 
 

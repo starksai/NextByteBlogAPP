@@ -16,6 +16,8 @@ import { Loading } from '@/components/Loading/Loading'
 import { IoCameraReverse } from "react-icons/io5";
 import Dropzone from 'react-dropzone'
 import { setUser } from '@/Redux/slices/user.slice'
+import noprofile from "@/assets/images/noprofileimage.jpg"
+
 
 export const Profile = () => {
 
@@ -122,7 +124,7 @@ export const Profile = () => {
                             <div {...getRootProps()}>
                                 <input {...getInputProps()} />
                                 <Avatar className='w-28 h-28 relative group' >
-                                    <AvatarImage src={preview ? preview : userData?.user?.avatar} />
+                                    <AvatarImage src={preview ? preview : userData?.user?.avatar || noprofile} />
                                     <div className='absolute z-10 w-full h-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center  border-2 rounded-full group-hover:flex hidden cursor-pointer' >
                                         <IoCameraReverse color='#7c3aed' width={100} height={100} />
 

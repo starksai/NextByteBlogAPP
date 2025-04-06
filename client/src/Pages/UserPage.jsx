@@ -21,9 +21,10 @@ import { handleDelete } from '@/Helpers/handleDelete'
 import { showToastify } from '@/Helpers/showToastify'
 import { useSelector } from 'react-redux'
 import moment from 'moment'
+import noprofile from '@/assets/images/noprofileimage.jpg'
 
 
-export const CommentsPage = () => {
+export const UserPage = () => {
 
     const userData = useSelector((state) => state.user)
 
@@ -38,26 +39,26 @@ export const CommentsPage = () => {
     // console.log(refreshData);
 
 
-    const { data, loading, error } = useFetch(`${getEnv('VITE_API_BASE_URL')}/comment/get-all-comments`, {
+    const { data, loading, error } = useFetch(`${getEnv('VITE_API_BASE_URL')}/user/get-all-users`, {
         method: 'get',
         Credential: 'include'
     }, [refreshData])
 
-    // console.log(data);
+    console.log(data);
 
     const handleDeleteCategory = async (id) => {
         // console.log(id);
-        
-        const response = await handleDelete(`${getEnv('VITE_API_BASE_URL')}/comment/delete/${id}`)
+
+        const response = await handleDelete(`${getEnv('VITE_API_BASE_URL')}/user/delete/${id}`)
         // console.log(response);
 
 
         if (response) {
             setRefreshData(!refreshData)
-            showToastify('success', "comment deleted")
+            showToastify('success', "user deleted")
         }
         else {
-            showToastify('error', "comment  not deleted")
+            showToastify('error', "user  not deleted")
 
         }
 
@@ -67,34 +68,36 @@ export const CommentsPage = () => {
     if (loading) return <Loading />
     return (
         <Card >
-            
+
             <CardContent>
                 <Table>
 
                     <TableHeader>
                         <TableRow>
-                            <TableHead >Blog</TableHead>
-                            <TableHead>Commented By</TableHead>
-                            <TableHead>Comment</TableHead>
-                            <TableHead>Date</TableHead>
+                            <TableHead >Role</TableHead>
+                            <TableHead>Name</TableHead>
+                            <TableHead>Email</TableHead>
+                            <TableHead>Avatar</TableHead>
+                            <TableHead>Dated</TableHead>
                             <TableHead>Actions</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {data && data.comments.length > 0 ?
+                        {data && data.users.length > 0 ?
 
 
-                            data.comments.map((comment) => {
+                            data.users.map((user) => {
                                 return (
-                                    <TableRow key={comment._id}>
-                                        <TableCell>{comment.blogid.title}</TableCell>
-                                        <TableCell>{comment.author.name}</TableCell>
-                                        <TableCell>{comment.comment}</TableCell>
-                                        <TableCell>{moment(comment.createdAt).fromNow()}</TableCell>
+                                    <TableRow key={user._id}>
+                                        <TableCell>{user.role}</TableCell>
+                                        <TableCell>{user.name}</TableCell>
+                                        <TableCell>{user.email}</TableCell>
+                                        <TableCell><img className='rounded w-15' src={user.avatar || noprofile}/></TableCell>
+                                        <TableCell>{moment(user.createdAt).format('DD-MM-YYYY')}</TableCell>
                                         <TableCell className='flex gap-3'>
-                                           
-                                            <Button variant="outline" className='hover:bg-black hover:text-white' onClick={() => {
-                                                handleDeleteCategory(comment._id)
+
+                                            <Button asChild variant="outline" className='hover:bg-black hover:text-white' onClick={() => {
+                                                handleDeleteCategory(user._id)
                                             }}>
                                                 <Link>
                                                     <BsFillTrash3Fill />

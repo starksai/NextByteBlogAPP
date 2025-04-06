@@ -47,8 +47,8 @@ export const updateUser = async (req, res, next) => {
                 const uploadResult = await cloudinary.uploader.upload(req.file.path, {
                     folder: "nextbyteblog",
                     resource_type: "auto",
-                }).catch((err=>{
-                    next(handleError(500,err.message))
+                }).catch((err => {
+                    next(handleError(500, err.message))
                 }));
 
                 user.avatar = uploadResult.secure_url;
@@ -71,5 +71,52 @@ export const updateUser = async (req, res, next) => {
         next(handleError(500, error.message))
 
 
+    }
+}
+
+
+export const getAllUser = async (req, res, next) => {
+
+    try {
+        const users = await User.find().lean().exec()
+
+        // console.log(user);
+
+
+        if (!users) {
+            next(handleError(404, "user not found"))
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "user data found",
+            users,
+        })
+
+    } catch (error) {
+        next(handleError(500, error.message))
+    }
+}
+
+export const deleteUser = async (req, res, next) => {
+
+    try {
+        const {userId} = req.params
+        const user = await User.findByIdAndDelete(userId).lean().exec()
+
+        // console.log(user);
+
+
+        if (!user) {
+            next(handleError(404, "user not found"))
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "user deleted success"
+        })
+
+    } catch (error) {
+        next(handleError(500, error.message))
     }
 }
