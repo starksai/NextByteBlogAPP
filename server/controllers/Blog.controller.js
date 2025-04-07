@@ -131,7 +131,42 @@ export const deleteBlog = async (req, res, next) => {
 
 export const showAllBlog = async (req, res, next) => {
     try {
-        let blog = await Blog.find().populate('author', 'name avatar role').populate('category', 'name slug').sort({ createdAt: -1 }).lean().exec()
+        const { userId, role } = req.params
+
+        // console.log(userId);
+        // console.log(role);
+
+        let blog;
+
+        if (role === "admin") {
+            blog = await Blog.find().populate('author', 'name avatar role').populate('category', 'name slug').sort({ createdAt: -1 }).lean().exec()
+        }
+        else {
+            blog = await Blog.find({author : userId}).populate('author', 'name avatar role').populate('category', 'name slug').sort({ createdAt: -1 }).lean().exec()
+        }
+
+
+
+
+        res.status(200).json({
+            blog
+        })
+
+
+    } catch (error) {
+        next(handleError(500, error.message))
+
+    }
+}
+
+export const showAllBlogHome = async (req, res, next) => {
+    try {
+
+        let blog =  await Blog.find().populate('author', 'name avatar role').populate('category', 'name slug').sort({ createdAt: -1 }).lean().exec()
+
+        
+
+
 
         res.status(200).json({
             blog
@@ -202,8 +237,8 @@ export const getBlogsByCategory = async (req, res, next) => {
 
         const categoryId = categoryData._id
 
-        if(!categoryId){
-            return next(handleError('404',"categoryId not found"))
+        if (!categoryId) {
+            return next(handleError('404', "categoryId not found"))
 
         }
 
@@ -216,7 +251,7 @@ export const getBlogsByCategory = async (req, res, next) => {
         })
 
     } catch (error) {
-        next(handleError('500',error.message))
+        next(handleError('500', error.message))
     }
 }
 
@@ -225,14 +260,14 @@ export const getSearch = async (req, res, next) => {
     const { q } = req.params
 
     // console.log(q);
-    
+
 
     try {
 
-        if(!q){
-            return next(handleError("404","quer data not found."))
+        if (!q) {
+            return next(handleError("404", "quer data not found."))
         }
-        const searchBlogs = await Blog.find({ title : {$regex : q , $options: 'i'}  }).populate('author', 'avatar name role email').populate('category', 'name slug').lean().exec()
+        const searchBlogs = await Blog.find({ title: { $regex: q, $options: 'i' } }).populate('author', 'avatar name role email').populate('category', 'name slug').lean().exec()
 
         // console.log(searchBlogs);
 
@@ -241,6 +276,6 @@ export const getSearch = async (req, res, next) => {
         })
 
     } catch (error) {
-        next(handleError('500',error.message))
+        next(handleError('500', error.message))
     }
 }

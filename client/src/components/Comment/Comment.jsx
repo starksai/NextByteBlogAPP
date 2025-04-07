@@ -38,6 +38,7 @@ export const Comment = ({ props }) => {
             let newValues = { ...values, blogid: props.blogid, author: user.user._id }
             const response = await fetch(`${getEnv('VITE_API_BASE_URL')}/comment/add`, {
                 method: 'post',
+                credentials : 'include',
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(newValues)
             })

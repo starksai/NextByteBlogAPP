@@ -79,9 +79,23 @@ export const getAllComments = async (req, res, next) => {
 
     try {
 
-        // const { userId } = req.params
+        const { userId, Role } = req.params
 
-        const comments = await Comment.find().populate('blogid', 'title slug').populate('author', 'name role').sort({ createdAt: -1 }).lean().exec()
+        // console.log(Role);
+        // console.log(userId);
+
+        let comments
+
+        if (Role === "admin") {
+            comments = await Comment.find().populate('blogid', 'title slug').populate('author', 'name role').sort({ createdAt: -1 }).lean().exec()
+        }
+        else{
+            comments = await Comment.find({author : userId}).populate('blogid', 'title slug').populate('author', 'name role').sort({ createdAt: -1 }).lean().exec()
+
+        }
+
+
+
 
 
         res.status(200).json({
@@ -110,14 +124,14 @@ export const deleteComment = async (req, res, next) => {
         }
 
 
-        const response = await Comment.findByIdAndDelete( commentid )
+        const response = await Comment.findByIdAndDelete(commentid)
 
         if (response.ok) {
             return next(handleError('404', "data not found - null"))
 
         }
         res.status(200).json({
-            success : true,
+            success: true,
             message: 'data deleted'
         })
 

@@ -20,14 +20,25 @@ import { handleDelete } from '@/Helpers/handleDelete'
 import { FaRegEdit } from "react-icons/fa";
 import { BsFillTrash3Fill } from "react-icons/bs";
 import moment from 'moment/moment'
+import { useSelector } from 'react-redux'
 
 export const Blog = () => {
+
+    const userData = useSelector((state)=> state.user)
+    const userId = userData.user._id
+    const role = userData.user.role
+
+    // console.log(userId);
+    // console.log(role);
+
+    
+    
 
     const [refreshData, setRefreshData] = useState(false)
     // console.log(refreshData, "outside function, state below");
 
 
-    const { data: blogData, loading, error } = useFetch(`${getEnv('VITE_API_BASE_URL')}/blog/get-all`, {
+    const { data: blogData, loading, error } = useFetch(`${getEnv('VITE_API_BASE_URL')}/blog/get-all/${userId}/${role}`, {
         method: 'get',
         Credential: 'include'
     }, [refreshData])

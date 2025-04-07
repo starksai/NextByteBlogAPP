@@ -38,7 +38,7 @@ export const CommentsPage = () => {
     // console.log(refreshData);
 
 
-    const { data, loading, error } = useFetch(`${getEnv('VITE_API_BASE_URL')}/comment/get-all-comments`, {
+    const { data, loading, error } = useFetch(`${getEnv('VITE_API_BASE_URL')}/comment/get-all-comments/${Role}/${userId}`, {
         method: 'get',
         Credential: 'include'
     }, [refreshData])

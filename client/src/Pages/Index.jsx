@@ -7,7 +7,7 @@ import { FaHome } from "react-icons/fa";
 
 export const Index = () => {
 
-  const { data: blogData, loading, error } = useFetch(`${getEnv('VITE_API_BASE_URL')}/blog/get-all`, {
+  const { data: blogData, loading, error } = useFetch(`${getEnv('VITE_API_BASE_URL')}/blog/get-all-home`, {
     method: 'get',
     Credential: 'include'
   })
