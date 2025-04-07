@@ -17,37 +17,37 @@ import { BlogsByCategory } from './Pages/BlogsByCategory'
 import { SearchBlog } from './Pages/SearchBlog'
 import { CommentsPage } from './Pages/CommentsPage'
 import { UserPage } from './Pages/UserPage'
+import { AuthRouteProtechtion } from './components/AuthRouteProtechtion/AuthRouteProtechtion'
+import { OnlyAdimAllowed } from './components/AuthRouteProtechtion/OnlyAdimAllowed'
 
 function App() {
 
   return (
     <BrowserRouter>
       <Routes>
+        
         <Route path={RouteIndex} element={<Layout />} >
+
           <Route index element={<Index />} />
-
-
-          <Route path={RouteProfile} element={<Profile />} />
-
-          
-          <Route path={RouteCategory} element={<Category />} />
-          <Route path={RouteAddCategory} element={<Addcategory />} />
-          <Route path={RouteEditCategory()} element={<Editcategory />} />
-
-
-          <Route path={RouteBlog} element={<Blog />} />
-          <Route path={RouteAddBlog} element={<Blogadd />} />
-          <Route path={RouteEditBlog()} element={<Blogedit />} />
-
           <Route path={RouteSingleBlog()} element={<SingleBlogDetails />} />
+          <Route path={RouteBlogByCategory()} element={<BlogsByCategory />} />
+          <Route path={RouteSearchBlog()} element={<SearchBlog />} />
 
-          <Route path={RouteBlogByCategory()} element={<BlogsByCategory />}  />
+          <Route element={<AuthRouteProtechtion />} >
+            <Route path={RouteProfile} element={<Profile />} />
+            <Route path={RouteBlog} element={<Blog />} />
+            <Route path={RouteAddBlog} element={<Blogadd />} />
+            <Route path={RouteEditBlog()} element={<Blogedit />} />
+            <Route path={RouteCommentsPage} element={<CommentsPage />} />
+          </Route>
 
+          <Route element={<OnlyAdimAllowed />} >
+            <Route path={RouteCategory} element={<Category />} />
+            <Route path={RouteAddCategory} element={<Addcategory />} />
+            <Route path={RouteEditCategory()} element={<Editcategory />} />
+            <Route path={RouteUsersPage} element={<UserPage />} />
+          </Route>
 
-          <Route path={RouteSearchBlog()} element={<SearchBlog />}  />
-          
-          <Route path={RouteCommentsPage} element={<CommentsPage />} />
-          <Route path={RouteUsersPage} element={<UserPage />} />
         </Route>
 
 

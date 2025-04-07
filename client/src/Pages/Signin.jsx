@@ -13,6 +13,7 @@ import { getEnv } from '@/Helpers/getEnv'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUser } from '@/Redux/slices/user.slice'
 import { GoogleLogin } from '@/components/GoogleLogin/GoogleLogin'
+import logo from '@/assets/images/logo.png'
 
 
 export const Signin = () => {
@@ -74,6 +75,12 @@ export const Signin = () => {
         <div className='flex justify-center items-center h-screen w-screen'>
 
             <Card className='p-5 w-[400px] '>
+                <div className='flex justify-center items-center'>
+                    <Link to={RouteIndex} >
+                        <img src={logo} width={100} />
+                    </Link>
+
+                </div>
                 <h2 className='text-center text-2xl'>SIGNIN INTO ACCOUNT</h2>
                 <div>
                     <GoogleLogin />
