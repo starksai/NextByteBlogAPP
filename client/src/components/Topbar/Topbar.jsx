@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Button } from '../ui/button'
 import { GrLogin } from "react-icons/gr";
 import { Searchbar } from '../Searchbar/Searchbar';
-import { RouteAddBlog,  RouteIndex, RouteProfile, RouteSignIn } from '@/Helpers/Routename';
+import { RouteAddBlog, RouteIndex, RouteProfile, RouteSignIn } from '@/Helpers/Routename';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     DropdownMenu,
@@ -22,8 +22,16 @@ import { MdAddCircle } from "react-icons/md";
 import { removeUser } from '@/Redux/slices/user.slice';
 import { showToastify } from '@/Helpers/showToastify';
 import { getEnv } from '@/Helpers/getEnv';
+import { FaSearch } from "react-icons/fa";
+import { useState } from 'react';
+import { GiHamburgerMenu } from "react-icons/gi";
+import { useSidebar } from '../ui/sidebar';
 
 export const Topbar = () => {
+
+    const [showSearch, setShowSearch] = useState(false)
+    const { toggleSidebar } = useSidebar()
+
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -56,19 +64,38 @@ export const Topbar = () => {
 
 
     }
-    return (
-        <div className='flex justify-between items-center h-16 fixed w-full z-20 border-b bg-gray-50 pl-5 pr-5'>
 
-            <div>
-                <img src={logo} width={75} />
+    const toggleSearch = () => {
+        setShowSearch(!showSearch)
+    }
+    return (
+        <div className='flex justify-between items-center h-16 fixed w-full z-20 border-b bg-gray-50 pl-5 px-5  '>
+
+            <div className='flex items-center gap-3  justify-center'>
+                <button onClick={toggleSidebar} className='md:hidden' type='button'>
+                    <GiHamburgerMenu className='' />
+                </button>
+                <Link to={RouteIndex}>
+                    <img src={logo} className='w-40 md:w-17' />
+                </Link>
+
             </div>
 
             <div className='w-100 bg-white-500 '>
-                <Searchbar />
+                <div className={`md:relative md:block  absolute left-0 w-full top-17 md:top-0 ${showSearch ? 'block' : 'hidden'}`}>
+
+                    <Searchbar />
+                </div>
 
             </div>
 
-            <div>
+            <div className='flex items-center gap-5'>
+
+
+
+                <div onClick={toggleSearch} type='button' className='md:hidden block' >
+                    <FaSearch />
+                </div>
 
                 {!user.isLoggedIn ?
                     <Button asChild className='rounded-full'>

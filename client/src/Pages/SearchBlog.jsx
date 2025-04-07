@@ -16,14 +16,14 @@ export const SearchBlog = () => {
         method: 'get',
         Credential: 'include'
     }, [q])
-    console.log(searchBlogs);
+    // console.log(searchBlogs);
 
 
     if (loading) return <Loading />
     return (
         <div>
-            <h1 className='text-2xl pb-4 border-b flex items-center gap-2'> <FaSearch /> Search results by: {q}</h1>
-            <div className='grid sm:grid-cols-1 md:grid-cols-1  lg:grid-cols-2  xl:grid-cols-3 2xl:grid-cols-4 grid-cols-1 gap-5 m-3'>
+            <h1 className='md:text-2xl pb-4 border-b flex items-center gap-2 text-xl'> <FaSearch /> Search results by: {q}</h1>
+            <div className='grid sm:grid-cols-1 md:grid-cols-1  lg:grid-cols-2  xl:grid-cols-3 2xl:grid-cols-4 grid-cols-1 gap-5 my-5'>
                 {searchBlogs && searchBlogs.searchBlogs.length > 0 ?
                     searchBlogs.searchBlogs.map(blog => <BlogCard key={blog._id} props={blog} />)
 

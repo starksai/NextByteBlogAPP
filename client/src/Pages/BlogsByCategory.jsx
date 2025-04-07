@@ -16,7 +16,7 @@ export const BlogsByCategory = () => {
         Credential: 'include'
     }, [category])
 
-    console.log(blogData);
+    // console.log(blogData);
 
     if (loading) return <Loading />
     return (

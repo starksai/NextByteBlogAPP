@@ -26,10 +26,10 @@ export const SingleBlogDetails = () => {
 
   if (loading) return <Loading />
   return (
-    <div className='flex justify-between gap-10 '>
+    <div className='md:flex-nowrap flex-wrap flex justify-between gap-10 '>
       {data &&
         <>
-          <div className='border rounded w-[70%] p-5'>
+          <div className='border rounded md:w-[70%] w-full p-5'>
             <h1 className='text-2xl font-bold mb-3'>{data.blog.title}</h1>
             <div className='flex justify-between items-center mb-3'>
               <div className='flex justify-between items-center gap-2'>
@@ -65,7 +65,7 @@ export const SingleBlogDetails = () => {
         </>
       }
 
-      <div className='border rounded w-[30%]'>
+      <div className='border rounded md:w-[30%] w-full'>
         <RelatedBlog props={{category:category, blog : blog}} />
       </div>
     </div>
