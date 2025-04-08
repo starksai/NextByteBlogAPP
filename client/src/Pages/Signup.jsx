@@ -11,7 +11,7 @@ import { RouteSignIn } from '@/Helpers/Routename'
 import { getEnv } from '@/Helpers/getEnv'
 import { useNavigate } from 'react-router-dom'
 import { showToastify } from '@/Helpers/showToastify'
-import { GoogleLogin } from '@/components/GoogleLogin/Googlelogin'
+import { GoogleLogin } from '@/components/GoogleLogin/GoogleLogin'
 
 
 export const Signup = () => {
