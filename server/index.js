@@ -19,10 +19,22 @@ const port = process.env.PORT  // getting port variable from .env module
 
 app.use(cookieParser())
 app.use(express.json())
-app.use(cors({
-    origin: "*",  // Allow frontend URL
-    credentials: true,  // Allow cookies, auth headers
-}))
+const allowedOrigins = [
+    "http://localhost:5173",
+    "https://next-byte-blog-app-seuk.vercel.app"
+  ];
+  
+  app.use(cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true
+  }));
+  
 
 app.use('/api/auth', AuthRouter)
 app.use('/api/user', UserRouter)
