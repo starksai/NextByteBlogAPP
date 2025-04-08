@@ -38,7 +38,7 @@ export const BlogCard = ({ props }) => {
                             <FaRegCalendarAlt />
                             <span>{moment(props.createdAt).fromNow()}</span>
                         </p>
-                        <h2 className='text-2xl font-bold line-clamp-2'>{props.title}</h2>
+                        <h2 className='text-xl font-bold line-clamp-2'>{props.title}</h2>
                     </div>
 
                 </CardContent>

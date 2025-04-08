@@ -47,7 +47,6 @@ export const CommentsPage = () => {
 
     const handleDeleteCategory = async (id) => {
         // console.log(id);
-        
         const response = await handleDelete(`${getEnv('VITE_API_BASE_URL')}/comment/delete/${id}`)
         // console.log(response);
 
@@ -67,7 +66,7 @@ export const CommentsPage = () => {
     if (loading) return <Loading />
     return (
         <Card >
-            
+
             <CardContent>
                 <Table>
 
@@ -87,17 +86,17 @@ export const CommentsPage = () => {
                             data.comments.map((comment) => {
                                 return (
                                     <TableRow key={comment._id}>
-                                        <TableCell>{comment.blogid.title}</TableCell>
-                                        <TableCell>{comment.author.name}</TableCell>
+                                        <TableCell>{comment.blogid?.title || N/A}</TableCell>
+                                        <TableCell>{comment.author?.name || "Unknow user"}</TableCell>
                                         <TableCell>{comment.comment}</TableCell>
                                         <TableCell>{moment(comment.createdAt).fromNow()}</TableCell>
                                         <TableCell className='flex gap-3'>
-                                           
+
                                             <Button variant="outline" className='hover:bg-black hover:text-white' onClick={() => {
                                                 handleDeleteCategory(comment._id)
                                             }}>
                                                 <Link>
-                                                    <BsFillTrash3Fill />
+                                                    <BsFillTrash3Fill  />
                                                 </Link>
                                             </Button>
                                         </TableCell>
