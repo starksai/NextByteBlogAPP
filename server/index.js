@@ -20,7 +20,7 @@ const port = process.env.PORT  // getting port variable from .env module
 app.use(cookieParser())
 app.use(express.json())
 app.use(cors({
-    origin: ["http://localhost:5173","https://next-byte-blog-app.vercel.app/"],  // Allow frontend URL
+    origin: ["http://localhost:5173","https://next-byte-blog-app.vercel.app/api/"],  // Allow frontend URL
     credentials: true,  // Allow cookies, auth headers
 }))
 
