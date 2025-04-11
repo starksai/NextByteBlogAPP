@@ -31,7 +31,7 @@ export const BlogsByCategory = () => {
                     blogData.BlogsData.map(blog => <BlogCard key={blog._id} props={blog} />)
 
                     :
-                    <h1 className='font-blod text-2xl font-Nunito'>blogs not found</h1>
+                    <h1 className='font-blod text-2xl font-Nunito'>Blogs not found</h1>
                 }
             </div>
         </>

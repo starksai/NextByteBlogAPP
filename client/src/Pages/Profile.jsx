@@ -164,7 +164,7 @@ export const Profile = () => {
                                 <FormItem>
                                     <FormLabel>Email</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="email" {...field} />
+                                        <Input placeholder="email" disabled {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>

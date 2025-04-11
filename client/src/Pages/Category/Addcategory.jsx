@@ -102,7 +102,7 @@ export const Addcategory = () => {
                 <FormItem>
                   <FormLabel>Slug</FormLabel>
                   <FormControl>
-                    <Input placeholder="Slug name" {...field} />
+                    <Input placeholder="Slug name" disabled {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
