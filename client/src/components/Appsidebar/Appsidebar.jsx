@@ -24,7 +24,7 @@ export const Appsidebar = () => {
     // console.log(categoryData);
 
     return (
-        <Sidebar className='pt-16'>
+        <Sidebar className='pt-16 '>
             {/* <SidebarHeader >
                 <img src={logo} width={75} height={50} />
             </SidebarHeader> */}
@@ -33,27 +33,32 @@ export const Appsidebar = () => {
 
                 <SidebarGroup >
                     <SidebarMenu>
-                        <SidebarMenuItem>
-                            <SidebarMenuButton>
-                                <IoHomeOutline />
-                                <Link to={RouteIndex} >Home</Link>
-                            </SidebarMenuButton>
+                        <SidebarMenuItem >
+                            <Link to={RouteIndex} >
+                                <SidebarMenuButton className='cursor-pointer'>
+                                    <IoHomeOutline />
+                                    Home
+                                </SidebarMenuButton>
+                            </Link>
                         </SidebarMenuItem>
-
 
                         {user && user.isLoggedIn &&
                             <>
                                 <SidebarMenuItem>
-                                    <SidebarMenuButton>
-                                        <GrBlog />
-                                        <Link to={RouteBlog} >Blog</Link>
-                                    </SidebarMenuButton>
+                                    <Link to={RouteBlog} >
+                                        <SidebarMenuButton className='cursor-pointer'>
+                                            <GrBlog />
+                                            Blog
+                                        </SidebarMenuButton>
+                                    </Link>
                                 </SidebarMenuItem>
                                 <SidebarMenuItem>
-                                    <SidebarMenuButton>
-                                        <FaRegComments />
-                                        <Link to={RouteCommentsPage} >Comments</Link>
-                                    </SidebarMenuButton>
+                                    <Link to={RouteCommentsPage} >
+                                        <SidebarMenuButton className='cursor-pointer'>
+                                            <FaRegComments />
+                                            Comments
+                                        </SidebarMenuButton>
+                                    </Link>
                                 </SidebarMenuItem>
                             </>
                         }
@@ -61,48 +66,43 @@ export const Appsidebar = () => {
                         {user && user.isLoggedIn && user.user.role === "admin" &&
                             <>
                                 <SidebarMenuItem>
-                                    <SidebarMenuButton>
-                                        <BiCategoryAlt />
-                                        <Link to={RouteCategory} >Categories</Link>
-                                    </SidebarMenuButton>
+                                    <Link to={RouteCategory} >
+                                        <SidebarMenuButton className='cursor-pointer'>
+                                            <BiCategoryAlt />
+                                            Categories
+                                        </SidebarMenuButton>
+                                    </Link>
                                 </SidebarMenuItem>
 
                                 <SidebarMenuItem>
-                                    <SidebarMenuButton>
-                                        <FaRegUser />
-                                        <Link to={RouteUsersPage} >User</Link>
-                                    </SidebarMenuButton>
+                                    <Link to={RouteUsersPage} >
+                                        <SidebarMenuButton className='cursor-pointer'>
+                                            <FaRegUser />
+                                            User
+                                        </SidebarMenuButton>
+                                    </Link>
                                 </SidebarMenuItem>
 
                             </>
                         }
-
-
-
-
-
-
-
                     </SidebarMenu>
-
                 </SidebarGroup>
 
                 <SidebarGroup >
                     <SidebarGroupLabel>  Categories
-
                     </SidebarGroupLabel>
                     <SidebarMenu>
                         {categoryData && categoryData.category.length > 0 && categoryData.category.map(cate => <SidebarMenuItem key={cate._id}>
-                            <SidebarMenuButton>
-                                <GoDot />
-                                <Link to={RouteBlogByCategory(cate.slug)} >{cate.name}</Link>
-                            </SidebarMenuButton>
+                            <Link to={RouteBlogByCategory(cate.slug)} >
+                                <SidebarMenuButton className='cursor-pointer'>
+                                    <GoDot />
+                                    {cate.name}
+                                </SidebarMenuButton>
+                            </Link>
                         </SidebarMenuItem>)}
-
                     </SidebarMenu>
-
-
                 </SidebarGroup>
+
             </SidebarContent>
 
         </Sidebar>

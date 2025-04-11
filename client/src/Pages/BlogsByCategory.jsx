@@ -26,14 +26,18 @@ export const BlogsByCategory = () => {
                 <h1 >  {category}</h1>
             </div>
 
-            <div className='grid sm:grid-cols-1 md:grid-cols-1  lg:grid-cols-2  xl:grid-cols-3 2xl:grid-cols-4 grid-cols-1 gap-5 mt-3'>
+            <div   >
                 {blogData && blogData.BlogsData.length > 0 ?
-                    blogData.BlogsData.map(blog => <BlogCard key={blog._id} props={blog} />)
+                    <div className='grid sm:grid-cols-1 md:grid-cols-1  lg:grid-cols-2  xl:grid-cols-3 2xl:grid-cols-4 grid-cols-1 gap-5 mt-3'>
+                        {blogData.BlogsData.map(blog => <BlogCard key={blog._id} props={blog} />)}
+                    </div>
+
 
                     :
-                    <h1 className='font-blod text-2xl font-Nunito'>Blogs not found</h1>
+                    <h1 style={{height:"70vh"}} className='font-blod text-2xl font-Nunito flex justify-center items-center'>Blogs not found</h1>
                 }
             </div>
+
         </>
     )
 }

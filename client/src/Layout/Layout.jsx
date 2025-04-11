@@ -12,7 +12,7 @@ export const Layout = () => {
             <Topbar />
             <Appsidebar />
             <main className='w-full border '>
-                <div className='w-full min-h-[calc(100vh-40px)] py-30 px-10'>
+                <div className='w-full min-h-[calc(100vh-40px)] pt-20 pb-5 px-10'>
                     <Outlet />
                 </div>
                 <Footer />
