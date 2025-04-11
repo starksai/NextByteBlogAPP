@@ -37,7 +37,7 @@ export const SingleBlogDetails = () => {
                   <AvatarImage src={data.blog.author.avatar} />
                 </Avatar>
                 <div>
-                  <p className='font-bold'> {data.blog.author.name}</p>
+                  <p className='font-bold'> {data.blog?.author?.name}</p>
                   <p className='text-xs'> {moment(data.blog.createdAt).fromNow()}</p>
                 </div>
               </div>

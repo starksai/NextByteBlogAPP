@@ -59,11 +59,11 @@ export const CommentsList = ({ props }) => {
 
             <div className='flex items-center'>
               <Avatar  >
-                <AvatarImage src={comment.author.avatar || noprofile} />
+                <AvatarImage src={comment?.author?.avatar || noprofile} />
               </Avatar>
 
               <div>
-                <p className='font-blod'>{comment.author.name}</p>
+                <p className='font-blod'>{comment?.author?.name}</p>
                 <p className='text-xs'>{moment(comment.createdAt).fromNow()}</p>
               </div>
             </div>
