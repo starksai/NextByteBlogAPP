@@ -1,0 +1,10 @@
+#rows{
+    width: 300px !important;
+}
+
+#CommentMsg{
+    /* background-color: red; */
+    /* white-space: nowrap; */
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}

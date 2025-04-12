@@ -18,7 +18,7 @@ const port = process.env.PORT  // getting port variable from .env module
 
 const origin  = process.env.FRONTEND_URL
 
-console.log(origin,"this is me");
+// console.log(origin,"this is me");
 
 
 app.use(cookieParser())

@@ -2,11 +2,9 @@ import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Link } from 'react-router-dom'
-import { RouteAddCategory, RouteEditCategory } from '@/Helpers/Routename'
 import {
     Table,
     TableBody,
-    TableCaption,
     TableCell,
     TableHead,
     TableHeader,
@@ -14,13 +12,22 @@ import {
 } from "@/components/ui/table"
 import { useFetch } from '@/hooks/useFetch'
 import { getEnv } from '@/Helpers/getEnv'
-import { FaRegEdit } from "react-icons/fa";
 import { BsFillTrash3Fill } from "react-icons/bs";
 import { Loading } from '@/components/Loading/Loading'
 import { handleDelete } from '@/Helpers/handleDelete'
 import { showToastify } from '@/Helpers/showToastify'
 import { useSelector } from 'react-redux'
 import moment from 'moment'
+import {
+    Dialog,
+    DialogContent,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
+
+import './CommentsPage.css'
 
 
 export const CommentsPage = () => {
@@ -85,20 +92,36 @@ export const CommentsPage = () => {
 
                             data.comments.map((comment) => {
                                 return (
-                                    <TableRow key={comment._id}>
-                                        <TableCell>{comment.blogid?.title || N/A}</TableCell>
+                                    <TableRow key={comment._id} id='rows'>
+                                        <TableCell>{comment.blogid?.title || N / A}</TableCell>
                                         <TableCell>{comment.author?.name || "Unknow user"}</TableCell>
-                                        <TableCell>{comment.comment}</TableCell>
+                                        <TableCell className='overflow-x-auto' id="CommentMsg">{comment.comment}</TableCell>
                                         <TableCell>{moment(comment.createdAt).fromNow()}</TableCell>
                                         <TableCell className='flex gap-3'>
 
-                                            <Button variant="outline" className='hover:bg-black hover:text-white' onClick={() => {
-                                                handleDeleteCategory(comment._id)
-                                            }}>
-                                                <Link>
-                                                    <BsFillTrash3Fill  />
-                                                </Link>
-                                            </Button>
+                                            <Dialog>
+                                                <DialogTrigger asChild>
+                                                    <Button variant="outline" className='cursor-pointer'>View Comment</Button>
+                                                </DialogTrigger>
+                                                <DialogContent className="sm:max-w-[425px]">
+                                                    <DialogHeader>
+                                                        <DialogTitle>Comment</DialogTitle>
+                                                    </DialogHeader>
+
+                                                    <div>{comment.comment}</div>
+
+                                                    <DialogFooter>
+                                                        <Button variant="outline" className='hover:bg-black hover:text-white' onClick={() => {
+                                                            handleDeleteCategory(comment._id)
+                                                        }}>
+                                                            <Link>
+                                                                <BsFillTrash3Fill />
+                                                            </Link>
+                                                        </Button>
+                                                    </DialogFooter>
+                                                </DialogContent>
+                                            </Dialog>
+
                                         </TableCell>
                                     </TableRow>
                                 )
