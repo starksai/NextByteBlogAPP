@@ -30,7 +30,7 @@ export const SingleBlogDetails = () => {
       {data &&
         <>
           <div className='border rounded md:w-[70%] w-full p-5'>
-            <h1 className='text-2xl font-bold mb-3'>{data.blog.title}</h1>
+            <h1 className='text-2xl font-bold mb-3'>{data.blog.title[0].toUpperCase() + data.blog.title.slice(1)}</h1>
             <div className='flex justify-between items-center mb-3'>
               <div className='flex justify-between items-center gap-2'>
                 <Avatar >
