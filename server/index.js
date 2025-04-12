@@ -16,13 +16,21 @@ dotenv.config() // loading environment variables from .env module
 const app = express()
 const port = process.env.PORT  // getting port variable from .env module
 
+const origin  = process.env.FRONTEND_URL
+
+console.log(origin,"this is me");
+
 
 app.use(cookieParser())
 app.use(express.json())
 app.use(cors({
-    origin: ["http://localhost:5173","https://next-byte-blog-app.vercel.app/api/"],  // Allow frontend URL
-    credentials: true,  // Allow cookies, auth headers
+    origin : origin,
+    credentials : true
 }))
+// app.use(cors({
+//     origin: ["http://localhost:5173","https://next-byte-blog-app.vercel.app/api/"],  // Allow frontend URL
+//     credentials: true,  // Allow cookies, auth headers
+// }))
 
 app.use('/api/auth', AuthRouter)
 app.use('/api/user', UserRouter)
