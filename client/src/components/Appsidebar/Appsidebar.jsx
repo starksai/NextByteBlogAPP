@@ -78,7 +78,7 @@ export const Appsidebar = () => {
                                     <Link to={RouteUsersPage} >
                                         <SidebarMenuButton className='cursor-pointer'>
                                             <FaRegUser />
-                                            User
+                                            Users
                                         </SidebarMenuButton>
                                     </Link>
                                 </SidebarMenuItem>

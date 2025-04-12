@@ -12,6 +12,12 @@ export const BlogCard = ({ props }) => {
 
     // console.log(props);
 
+    const title = props.title
+    const CapTitle = title[0].toUpperCase()+title.slice(1)
+
+    // console.log(CapTitle);
+    
+
 
     const user = useSelector((state) => state.user)
 
@@ -38,7 +44,7 @@ export const BlogCard = ({ props }) => {
                             <FaRegCalendarAlt />
                             <span>{moment(props.createdAt).fromNow()}</span>
                         </p>
-                        <h2 className='text-xl font-bold line-clamp-2'>{props.title}</h2>
+                        <h2 className='text-xl font-bold line-clamp-2'>{CapTitle}</h2>
                     </div>
 
                 </CardContent>
