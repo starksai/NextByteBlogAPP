@@ -39,7 +39,7 @@ export const RelatedBlog = ({ props }) => {
                     )
                 })
                 :
-                <h3>No Related Blogs</h3>
+                <h3 className='  p-3 '>No Related Blogs</h3>
 
             }
 

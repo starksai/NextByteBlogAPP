@@ -50,7 +50,7 @@ export const SingleBlogDetails = () => {
 
 
             </div>
-            <div className='mb-5 rounded'>
+            <div className='mb-5 rounded  flex justify-center'>
               <img src={data.blog.featuredImage} className='rounded' />
             </div>
             <div>

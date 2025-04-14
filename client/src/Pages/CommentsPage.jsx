@@ -101,21 +101,33 @@ export const CommentsPage = () => {
 
                                             <Dialog>
                                                 <DialogTrigger asChild>
-                                                    <Button variant="outline" className='cursor-pointer'>View Comment</Button>
+                                                    <Button variant="outline" className='cursor-pointer hover:bg-black hover:text-white'>View Comment</Button>
                                                 </DialogTrigger>
                                                 <DialogContent className="sm:max-w-[425px]">
                                                     <DialogHeader>
                                                         <DialogTitle>Comment</DialogTitle>
                                                     </DialogHeader>
 
-                                                    <div>{comment.comment}</div>
+                                                    <div>
+                                                        <h3 className='text-2xl fonu-b pb-2'>{comment.blogid?.title || N / A}</h3>
+                                                        <div className='flex justify-between py-2'>
+                                                            <span>
+                                                                {comment.author?.name || "Unknow user"}
+                                                            </span>
+                                                            <span>
+                                                                {moment(comment.createdAt).fromNow()}
+                                                            </span>
+                                                        </div>
+                                                        <p>{comment.comment}</p>
+                                                    </div>
 
                                                     <DialogFooter>
                                                         <Button variant="outline" className='hover:bg-black hover:text-white' onClick={() => {
                                                             handleDeleteCategory(comment._id)
                                                         }}>
                                                             <Link>
-                                                                <BsFillTrash3Fill />
+                                                                {/* <BsFillTrash3Fill /> */}
+                                                                <span>Delete</span>
                                                             </Link>
                                                         </Button>
                                                     </DialogFooter>
