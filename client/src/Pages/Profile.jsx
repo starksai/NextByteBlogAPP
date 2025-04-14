@@ -17,6 +17,7 @@ import { IoCameraReverse } from "react-icons/io5";
 import Dropzone from 'react-dropzone'
 import { setUser } from '@/Redux/slices/user.slice'
 import noprofile from "@/assets/images/noprofileimage.jpg"
+import { Badge } from '@/components/ui/badge'
 
 
 export const Profile = () => {
@@ -30,7 +31,7 @@ export const Profile = () => {
         { method: 'get', credentials: 'include' }
     )
 
-    // console.log(userData);
+    console.log(user);
 
     const dispatch = useDispatch()
 
@@ -133,6 +134,12 @@ export const Profile = () => {
                             </div>
                         )}
                     </Dropzone>
+
+                    {user && user.isLoggedIn && user.user.role === "admin" && 
+
+                    <Badge className='relative bottom-10 right-2'>Admin</Badge>
+                    }
+
 
 
 
