@@ -60,7 +60,7 @@ export const GoogleLogin = () => {
 
     return (
         <div>
-            <Button onClick={handleGoogleLogin} className="w-full" variant="outline" >
+            <Button onClick={handleGoogleLogin} className="w-full cursor-pointer" variant="outline" >
                 <FcGoogle />
                 Continue with Google
             </Button>

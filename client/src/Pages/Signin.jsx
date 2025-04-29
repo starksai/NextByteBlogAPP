@@ -1,22 +1,31 @@
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { z } from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Link, useNavigate } from 'react-router-dom'
-import { RouteSignIn, RouteSignUp, RouteIndex } from '@/Helpers/Routename'
+import { RouteSignUp, RouteIndex } from '@/Helpers/Routename'
 import { showToastify } from '@/Helpers/showToastify'
 import { getEnv } from '@/Helpers/getEnv'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUser } from '@/Redux/slices/user.slice'
 import { GoogleLogin } from '@/components/GoogleLogin/GoogleLogin'
 import logo from '@/assets/images/logo.png'
+import { GrUserAdmin } from "react-icons/gr";
 
 
 export const Signin = () => {
+
+    // const [login, setLogin] = useState({
+    //     email: "guest@gmail.com",
+    //     password: "Guest@123"
+    // })
+
+    // console.log(login);
+
 
 
     const navigate = useNavigate()
@@ -31,8 +40,8 @@ export const Signin = () => {
     const form = useForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            email: "",
-            password: "",
+            email: "guest@gmail.com",
+            password: "Guest@123",
         },
     })
 
@@ -67,9 +76,21 @@ export const Signin = () => {
         }
     }
 
+    async function handleAdminLogin() {
+
+        // setLogin({
+        //     email: "admin@gmail.com",
+        //     password: "Guest@123"
+
+        // })
+
+        form.reset({
+            email: "admin@gmail.com",
+            password: "Admin@123",
+        });
 
 
-
+    }
 
     return (
         <div className='flex justify-center items-center h-screen w-screen'>
@@ -79,7 +100,6 @@ export const Signin = () => {
                     <Link to={RouteIndex} >
                         <img src={logo} width={100} />
                     </Link>
-
                 </div>
                 <h2 className='text-center text-2xl'>SIGNIN INTO ACCOUNT</h2>
                 <div>
@@ -121,20 +141,24 @@ export const Signin = () => {
                         />
 
 
-                        <Button type="submit" className='w-full'>Signin</Button>
-                        <div className='flex justify-center gap-2'>
-                            <p>Don't have an account? </p>
-                            <Link to={RouteSignUp} className='text-sky-500 underline'>SignUp</Link>
-                        </div>
+                        <Button type="submit" className='w-full cursor-pointer'>Signin</Button>
+
                     </form>
                 </Form>
 
+                <Button className='cursor-pointer' onClick={handleAdminLogin} >
+                    <span><GrUserAdmin /></span>
+                    Login as Admin
+                </Button>
+
+
+                <div className='flex justify-center gap-2'>
+                    <p>Don't have an account? </p>
+                    <Link to={RouteSignUp} className='text-sky-500 underline'>SignUp</Link>
+                </div>
 
 
             </Card>
-
-
-
 
         </div>
 
