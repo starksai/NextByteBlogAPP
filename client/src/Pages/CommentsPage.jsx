@@ -79,7 +79,7 @@ export const CommentsPage = () => {
 
                     <TableHeader>
                         <TableRow>
-                            <TableHead >Blog</TableHead>
+                            <TableHead>Blog</TableHead>
                             <TableHead>Commented By</TableHead>
                             <TableHead>Comment</TableHead>
                             <TableHead>Date</TableHead>
@@ -88,13 +88,11 @@ export const CommentsPage = () => {
                     </TableHeader>
                     <TableBody>
                         {data && data.comments.length > 0 ?
-
-
                             data.comments.map((comment) => {
                                 return (
                                     <TableRow key={comment._id} id='rows'>
-                                        <TableCell>{comment.blogid?.title || N / A}</TableCell>
-                                        <TableCell>{comment.author?.name || "Unknow user"}</TableCell>
+                                        <TableCell className='overflow-x-auto' id="CommentMsg">{comment.blogid?.title || N / A}</TableCell>
+                                        <TableCell className='overflow-x-auto' id="CommentMsg">{comment.author?.name || "Unknow user"}</TableCell>
                                         <TableCell className='overflow-x-auto' id="CommentMsg">{comment.comment}</TableCell>
                                         <TableCell>{moment(comment.createdAt).fromNow()}</TableCell>
                                         <TableCell className='flex gap-3'>

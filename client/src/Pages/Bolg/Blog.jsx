@@ -24,15 +24,15 @@ import { useSelector } from 'react-redux'
 
 export const Blog = () => {
 
-    const userData = useSelector((state)=> state.user)
+    const userData = useSelector((state) => state.user)
     const userId = userData.user._id
     const role = userData.user.role
 
     // console.log(userId);
     // console.log(role);
 
-    
-    
+
+
 
     const [refreshData, setRefreshData] = useState(false)
     // console.log(refreshData, "outside function, state below");
@@ -98,12 +98,22 @@ export const Blog = () => {
                             blogData.blog.map((blog) => {
                                 return (
                                     <TableRow key={blog._id}>
-                                        <TableCell>{blog.author.name}</TableCell>
-                                        <TableCell>{blog.category.name}</TableCell>
-                                        <TableCell>{blog.title}</TableCell>
-                                        <TableCell>{blog.slug}</TableCell>
-                                        <TableCell>{moment(blog.createdAt).format('DD-MM-YYYY')}</TableCell>
-                                        <TableCell className='flex gap-3'>
+                                        <TableCell className='overflow-x-auto' id="CommentMsg">
+                                            {blog.author.name}
+                                        </TableCell>
+                                        <TableCell className='overflow-x-auto' id="CommentMsg">
+                                            {blog.category.name}
+                                        </TableCell>
+                                        <TableCell className='overflow-x-auto' id="CommentMsg">
+                                            {blog.title}
+                                        </TableCell>
+                                        <TableCell className='overflow-x-auto' id="CommentMsg">
+                                            {blog.slug}
+                                        </TableCell>
+                                        <TableCell className='overflow-x-auto' id="CommentMsg">
+                                            {moment(blog.createdAt).format('DD-MM-YYYY')}
+                                        </TableCell>
+                                        <TableCell className='flex gap-3 overflow-x-auto' id="CommentMsg">
 
 
                                             <Button className='hover:bg-black hover:text-white' variant="outline">
@@ -112,7 +122,7 @@ export const Blog = () => {
                                                 </Link>
                                             </Button>
 
-                                            
+
                                             <Button variant="outline" className='hover:bg-black hover:text-white' onClick={() => {
                                                 handleDeleteCategory(blog._id)
                                             }}>

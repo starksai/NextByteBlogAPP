@@ -74,7 +74,7 @@ export const UserPage = () => {
 
                     <TableHeader>
                         <TableRow>
-                            <TableHead >Role</TableHead>
+                            <TableHead>Role</TableHead>
                             <TableHead>Name</TableHead>
                             <TableHead>Email</TableHead>
                             <TableHead>Avatar</TableHead>
@@ -89,11 +89,11 @@ export const UserPage = () => {
                             data.users.map((user) => {
                                 return (
                                     <TableRow key={user._id}>
-                                        <TableCell>{user.role}</TableCell>
-                                        <TableCell>{user.name}</TableCell>
-                                        <TableCell>{user.email}</TableCell>
-                                        <TableCell><img className='rounded w-15' src={user.avatar || noprofile}/></TableCell>
-                                        <TableCell>{moment(user.createdAt).format('DD-MM-YYYY')}</TableCell>
+                                        <TableCell className='overflow-x-auto' id="CommentMsg">{user.role}</TableCell>
+                                        <TableCell className='overflow-x-auto' id="CommentMsg">{user.name}</TableCell>
+                                        <TableCell className='overflow-x-auto' id="CommentMsg">{user.email}</TableCell>
+                                        <TableCell className='overflow-x-auto' id="CommentMsg"><img className='rounded w-15' src={user.avatar || noprofile}/></TableCell>
+                                        <TableCell className='overflow-x-auto' id="CommentMsg">{moment(user.createdAt).format('DD-MM-YYYY')}</TableCell>
                                         <TableCell className='flex gap-3'>
 
                                             <Button asChild variant="outline" className='hover:bg-black hover:text-white' onClick={() => {
