@@ -33,6 +33,8 @@ export const Blogadd = () => {
     const [preview, setPreview] = useState()
     const [file, setFile] = useState()
 
+    const [isSubmit, setIsSubmit] = useState(false)
+
 
     // console.log(content);
 
@@ -68,7 +70,7 @@ export const Blogadd = () => {
 
     const blogTitle = form.watch("title")
     useEffect(() => {
-        
+
 
         if (blogTitle) {
             const slug = slugify(blogTitle, { lower: true })
@@ -77,7 +79,7 @@ export const Blogadd = () => {
 
         }
 
-    },[blogTitle])
+    }, [blogTitle])
 
 
 
@@ -93,14 +95,16 @@ export const Blogadd = () => {
 
 
     async function onSubmit(values) {
+
+        setIsSubmit(true)
         // console.log(values);
 
         try {
-            const newData = {...values, author: user.user._id}
+            const newData = { ...values, author: user.user._id }
             // console.log(newData);
 
-            if(!file){
-                showToastify("error",'feature image is required.')
+            if (!file) {
+                showToastify("error", 'feature image is required.')
             }
             const formData = new FormData()
             formData.append("file", file)
@@ -123,14 +127,17 @@ export const Blogadd = () => {
             form.reset()
             setFile()
             setPreview()
-           
+
 
             navigate(RouteBlog)
             showToastify("success", data.message)
 
         } catch (error) {
             showToastify("error", error.message)
+        } finally{
+            setIsSubmit(false)
         }
+
 
     }
 
@@ -227,7 +234,9 @@ export const Blogadd = () => {
                         </div>
 
 
-                        <Button type="submit" className='w-full cursor-pointer'>Submit</Button>
+                        <Button type="submit" className='w-full cursor-pointer' disabled={isSubmit}>
+                            {isSubmit ? "Submitting" : "Submit"}
+                        </Button>
 
                     </form>
                 </Form>
