@@ -25,6 +25,8 @@ import { RouteBlog } from '@/Helpers/Routename'
 import { Loading } from '@/components/Loading/Loading'
 
 export const Blogedit = () => {
+
+  const [isSubmit, setIsSubmit] = useState(false)
   const { blog_id } = useParams()
 
   // console.log('hii',blog_id);
@@ -116,6 +118,7 @@ export const Blogedit = () => {
 
 
   async function onSubmit(values) {
+    setIsSubmit(true)
     // console.log(values);
 
     try {
@@ -150,6 +153,9 @@ export const Blogedit = () => {
 
     } catch (error) {
       showToastify("error", error.message)
+    }
+    finally{
+      setIsSubmit(false)
     }
 
   }
@@ -247,7 +253,9 @@ export const Blogedit = () => {
             </div>
 
 
-            <Button type="submit" className='w-full cursor-pointer'>Submit</Button>
+            <Button type="submit" className='w-full cursor-pointer' disabled={isSubmit}>
+              {isSubmit ? "Submitting" : "Submit"}
+            </Button>
 
           </form>
         </Form>
