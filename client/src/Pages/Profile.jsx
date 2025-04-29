@@ -22,6 +22,8 @@ import { Badge } from '@/components/ui/badge'
 
 export const Profile = () => {
 
+    const [disable , setDisable] = useState(false)
+
     const [preview, setPreview] = useState()
     const [file, setFile] = useState()
     // console.log(file,"from use sataet");
@@ -31,7 +33,7 @@ export const Profile = () => {
         { method: 'get', credentials: 'include' }
     )
 
-    console.log(user);
+    // console.log(user);
 
     const dispatch = useDispatch()
 
@@ -67,6 +69,8 @@ export const Profile = () => {
 
 
     async function onSubmit(values) {
+
+        setDisable(true)
         // console.log(values);
 
         // console.log(`${getEnv('VITE_API_BASE_URL')}/auth/register`);
@@ -99,6 +103,9 @@ export const Profile = () => {
         } catch (error) {
             showToastify("error", error.message)
         }
+        finally{
+            setDisable(false)
+        }
     }
 
     const handleFileSelection = (files) => {
@@ -117,7 +124,7 @@ export const Profile = () => {
 
             <CardContent>
 
-                <div className='flex justify-center items-center mt-10'>
+                <div className='flex justify-center items-center mt-10 pb-10'>
 
                     <Dropzone onDrop={acceptedFiles => handleFileSelection(acceptedFiles)}>
                         {({ getRootProps, getInputProps }) => (
@@ -135,14 +142,10 @@ export const Profile = () => {
                         )}
                     </Dropzone>
 
-                    {user && user.isLoggedIn && user.user.role === "admin" && 
+                    {user && user.isLoggedIn && user.user.role === "admin" &&
 
-                    <Badge className='relative bottom-10 right-2'>Admin</Badge>
+                        <Badge className='relative  top-18 right-20'>Admin</Badge>
                     }
-
-
-
-
 
                 </div>
 
@@ -155,7 +158,7 @@ export const Profile = () => {
                             name="name"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>name</FormLabel>
+                                    <FormLabel>Name</FormLabel>
                                     <FormControl>
                                         <Input placeholder="Enter your name" {...field} />
                                     </FormControl>
@@ -208,7 +211,9 @@ export const Profile = () => {
                         />
 
 
-                        <Button type="submit" className='w-full'>save changes </Button>
+                        <Button type="submit" disabled={disable} className='w-full cursor-pointer'>
+                            {disable ? "Saving..." : "save changes"}
+                        </Button>
                     </form>
                 </Form>
             </CardContent>
